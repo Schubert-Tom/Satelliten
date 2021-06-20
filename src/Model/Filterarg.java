@@ -1,5 +1,8 @@
 package Model;
 
 public abstract class Filterarg {
-    String filarg;
+    String kriterium;
+    public Data filter(){
+        return null;
+    }
 }
