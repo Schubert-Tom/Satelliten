@@ -8,12 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class saveToFile implements OutputAggregat {
+public class SaveToFile implements OutputAggregat {
     @Override
     public void useAggregat(JTextArea jta) {
-        jta.setText("Saving in file: output.txt ATTENTION Overwrite possible");
-        final String content = "TEST";
-        final Path path = Paths.get("output.txt");
+        jta.setText("Saving in file: output.json ATTENTION Overwrite possible");
+        final String content = "{\"TEST\":\"test\"}";
+        final Path path = Paths.get("output.json");
 
         try (
                 final BufferedWriter writer = Files.newBufferedWriter(path,

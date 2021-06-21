@@ -6,15 +6,9 @@
 package View;
 
 import Model.ShowInGui;
-import Model.saveToFile;
+import Model.SaveToFile;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
@@ -42,7 +36,7 @@ public class Gui extends javax.swing.JFrame {
 
         scrollPlane = new javax.swing.JScrollPane();
         outputArea = new javax.swing.JTextArea();
-        LoadData = new javax.swing.JButton();
+        loadData = new javax.swing.JButton();
         loadAggregat = new javax.swing.JButton();
         outputType = new javax.swing.JCheckBox();
         run = new javax.swing.JButton();
@@ -53,10 +47,10 @@ public class Gui extends javax.swing.JFrame {
         outputArea.setRows(5);
         scrollPlane.setViewportView(outputArea);
 
-        LoadData.setText("Load Data");
-        LoadData.addActionListener(new java.awt.event.ActionListener() {
+        loadData.setText("Load Data");
+        loadData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadDataActionPerformed(evt);
+                loadDataActionPerformed(evt);
             }
         });
 
@@ -91,7 +85,7 @@ public class Gui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(run)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LoadData)
+                        .addComponent(loadData)
                         .addGap(32, 32, 32)
                         .addComponent(loadAggregat)
                         .addGap(117, 117, 117))))
@@ -103,19 +97,19 @@ public class Gui extends javax.swing.JFrame {
                 .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoadData)
+                    .addComponent(loadData)
                     .addComponent(loadAggregat)
                     .addComponent(outputType)
                     .addComponent(run))
                 .addGap(30, 30, 30))
         );
 
-        outputType.getAccessibleContext().setAccessibleName("Output json file instead of screen");
+        outputType.getAccessibleContext().setAccessibleName("Output JSON file instead of screen");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
+    private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
      
             JFileChooser c = new JFileChooser();
             c.setAcceptAllFileFilterUsed(false);
@@ -185,7 +179,7 @@ public class Gui extends javax.swing.JFrame {
         //filter nach Aggregat
         if(outputType.isSelected()){
         //saveReport();
-            saveToFile stf = new saveToFile();
+            SaveToFile stf = new SaveToFile();
             stf.useAggregat(outputArea);
         } else{
         //outputArea.setText("Output string");
@@ -252,7 +246,7 @@ public class Gui extends javax.swing.JFrame {
 
 }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoadData;
+    private javax.swing.JButton loadData;
     private javax.swing.JButton loadAggregat;
     private javax.swing.JTextArea outputArea;
     private javax.swing.JCheckBox outputType;
