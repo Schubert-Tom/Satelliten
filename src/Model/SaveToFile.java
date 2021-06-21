@@ -1,5 +1,7 @@
 package Model;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.nio.charset.StandardCharsets;
@@ -9,9 +11,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class SaveToFile implements OutputAggregat {
-    @Override
-    public void useAggregat(JTextArea jta) {
-        jta.setText("Saving in file: output.json ATTENTION Overwrite possible");
+
+    public void useAggregat(@NotNull JTextArea jta) {
+
+        jta.setText("Saving in file: output.json");
         final String content = "{\"TEST\":\"test\"}";
         final Path path = Paths.get("output.json");
 

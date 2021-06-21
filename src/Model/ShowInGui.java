@@ -1,12 +1,13 @@
 package Model;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 
 public class ShowInGui implements OutputAggregat{
 
 
-    @Override
-    public void useAggregat(JTextArea jta) {
-        jta.setText("Output string");
+        public void useAggregat(@NotNull JTextArea jta) {
+            jta.setText("Output string");
     }
 }
