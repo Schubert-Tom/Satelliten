@@ -5,6 +5,9 @@
  */
 package View;
 
+import Model.ShowInGui;
+import Model.saveToFile;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -19,12 +22,12 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author Thomas Khiem
  */
-public class gui extends javax.swing.JFrame {
+public class Gui extends javax.swing.JFrame {
 
     /**
      * Creates new form ContactEditorUI
      */
-    public gui() {
+    public Gui() {
         initComponents();
     }
 
@@ -132,7 +135,7 @@ public class gui extends javax.swing.JFrame {
                 }
             });
             // Demonstrate "Open" dialog:
-            int rVal = c.showOpenDialog(gui.this);
+            int rVal = c.showOpenDialog(Gui.this);
             if (rVal == JFileChooser.APPROVE_OPTION) {
                 outputArea.setText(c.getSelectedFile().getName());
                // dir.setText(c.getCurrentDirectory().toString());
@@ -165,7 +168,7 @@ public class gui extends javax.swing.JFrame {
                 }
             });
             // Demonstrate "Open" dialog:
-            int rVal = c.showOpenDialog(gui.this);
+            int rVal = c.showOpenDialog(Gui.this);
             if (rVal == JFileChooser.APPROVE_OPTION) {
                 outputArea.setText(c.getSelectedFile().getName());
                // dir.setText(c.getCurrentDirectory().toString());
@@ -181,10 +184,13 @@ public class gui extends javax.swing.JFrame {
         // TODO add your handling code here:
         //filter nach Aggregat
         if(outputType.isSelected()){
-        System.out.print("TEST");   
-        saveReport();
+        //saveReport();
+            saveToFile stf = new saveToFile();
+            stf.useAggregat(outputArea);
         } else{
-        outputArea.setText("Output string");
+        //outputArea.setText("Output string");
+            ShowInGui sig = new ShowInGui();
+            sig.useAggregat(outputArea);
         }
         
     }//GEN-LAST:event_runActionPerformed
@@ -206,13 +212,13 @@ public class gui extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -220,13 +226,16 @@ public class gui extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new gui().setVisible(true);
+                new Gui().setVisible(true);
             }
         });
     }
-
+/*
     public void saveReport()
-{   
+{
+    saveToFile stf = new saveToFile();
+    stf.useAggregat(outputArea);
+
     outputArea.setText("Saving in file: logKMAX.txt");
     final String content = "TEST";
     final Path path = Paths.get("logKMAX.txt");
@@ -239,7 +248,9 @@ public class gui extends javax.swing.JFrame {
         writer.flush();
     }catch(Exception e){
         outputArea.setText("ERROR SAVING FAILED");    }
-}
+
+
+}*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoadData;
     private javax.swing.JButton loadAggregat;
