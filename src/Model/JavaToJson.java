@@ -9,27 +9,51 @@ import java.util.List;
 public class JavaToJson {
 
     private ArrayList<Satellit>satellits;
-    public void transform( char[] view){
+    public void transform( int view){
         //Creating a JSONObject object
         JSONObject jsonObject = new JSONObject();
-        if(view.length == 1){
-            if(view[0] == 'S'){
+        switch (view){
+            case 1: //S
                 removeTransponderSat();
                 getAllSat();
-            }else if(view[0] == 'T'){
+                break;
+            case 2://T
                 removeChannelsTransponder();
                 getAllTransponders();
-            }else{
+                break;
+            case 3://C
                 getAllChannels();
-            }
-        }else if (view.length == 2){
-            if(view[0] == 'S' && view[1] == 'T'){
+                break;
+            case 4://ST
                 removeChannelsTransponder();
                 putJson("sat",satellits);
-            }else if (view[0] == 'S' && view[1] == 'C'){}
+                break;
+            case 5://SC
                 addChannelsToSat();
                 removeTransponderSat();
                 putJson("sat",satellits);
+                break;
+            case 6://TS
+                addSatTransponder();
+                removeChannelsTransponder();
+
+
+
+        }
+
+        if(view == 1){
+            if(view[0] == 'S'){
+
+            }else if(view[0] == 'T'){
+
+            }else{
+
+            }
+        }else if (view.length == 2){
+            if(view[0] == 'S' && view[1] == 'T'){
+
+            }else if (view[0] == 'S' && view[1] == 'C'){}
+
         }
         for (int i=0; i < view.length; i++){
             if (view[i] == 'S'){
