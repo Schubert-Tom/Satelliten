@@ -14,18 +14,16 @@ public class Transformer {
                     if(satellits.stream().noneMatch(o -> o.getName().equals(transponder.getSat()))) {
                         List<Transponder> temp = new ArrayList<Transponder>();
                         temp.add(transponder);
-                        List<Channel> tempChannelList = new ArrayList<Channel>(transponder.getChannels());
-                        satellits.add(new Satellit(temp, transponder.getSat(),tempChannelList));
+                        satellits.add(new Satellit(temp, transponder.getSat(),transponder.getChannels()));
                     }else{
                         satellits.stream().filter(o -> o.getName().equals(transponder.getSat()))
                                 .forEach(
                                         o -> {
                                             o.getTransponders().add(transponder);
-                                            (transponder.getChannels().forEach(
-                                                   o.getChannels().add(this) ;
-                                            );)
+                                            transponder.getChannels().forEach(
+                                                   channel -> o.getChannels().add(channel)
+                                            );
                                         }
-
                                 );
                     }
                 });
