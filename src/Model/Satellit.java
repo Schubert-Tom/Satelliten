@@ -11,15 +11,19 @@ public class Satellit{
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public Satellit() {
     }
 
     public List<Transponder> getTransponders() {
         return transponders;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setTransponders(List<Transponder> transponders) {
         this.transponders = transponders;
     }
+
 }
