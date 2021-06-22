@@ -5,8 +5,8 @@
  */
 package View;
 
-import Model.ShowInGui;
-import Model.SaveToFile;
+import OutputAggregat.ShowInGui;
+import OutputAggregat.SaveToFile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -190,7 +190,7 @@ public class Gui extends javax.swing.JFrame {
             ShowInGui sig = new ShowInGui();
             sig.useAggregat(outputArea);
         }
-        
+
     }//GEN-LAST:event_runActionPerformed
 
     /**

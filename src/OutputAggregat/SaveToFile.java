@@ -1,4 +1,4 @@
-package Model;
+package OutputAggregat;
 
 import org.jetbrains.annotations.NotNull;
 
