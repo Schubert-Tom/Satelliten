@@ -9,59 +9,72 @@ import java.util.List;
 public class JavaToJson {
 
     private ArrayList<Satellit>satellits;
+    public JavaToJson (ArrayList<Satellit>satellits){
+        this.satellits = satellits;
+    }
     public void transform( int view){
         //Creating a JSONObject object
         JSONObject jsonObject = new JSONObject();
-        switch (view){
-            case 1: //S
+        switch (view) {
+            case 1 -> { //S
                 removeTransponderSat();
                 getAllSat();
-                break;
-            case 2://T
+            }
+            case 2, 6 -> {//T//TS
+
                 removeChannelsTransponder();
                 getAllTransponders();
-                break;
-            case 3://C
-                getAllChannels();
-                break;
-            case 4://ST
+            }
+            case 3 ->//C
+                    getAllChannels();
+            case 4 -> {//ST
                 removeChannelsTransponder();
-                putJson("sat",satellits);
-                break;
-            case 5://SC
+                getAllSat();
+            }
+            case 5 -> {//SC
                 addChannelsToSat();
                 removeTransponderSat();
-                putJson("sat",satellits);
-                break;
-            case 6://TS
+                getAllSat();
+            }
+            case 7 ->//TC
+                    getAllTransponders();
+            case 8 -> {//CS
+                addSatStringChannel();
+                getAllChannels();
+            }
+            case 9 -> {//CT
+                addTranspondersChannel();
+                removeChannelsTransponder2();
+                getAllChannels();
+            }
+            case 10 ->//STC
+                    getAllSat();
+            case 11 -> {//SCT
+                addTranspondersChannel();
+                removeChannelsTransponder2();
+                addChannelsToSat();
+                removeTransponderSat();
+                getAllSat();
+            }
+            case 12 -> {//TSC
+                addChannelsToSat();
                 addSatTransponder();
-                removeChannelsTransponder();
-
-
-
-        }
-
-        if(view == 1){
-            if(view[0] == 'S'){
-
-            }else if(view[0] == 'T'){
-
-            }else{
-
+                removeTransponderSat2();
+                getAllChannels();
             }
-        }else if (view.length == 2){
-            if(view[0] == 'S' && view[1] == 'T'){
-
-            }else if (view[0] == 'S' && view[1] == 'C'){}
-
-        }
-        for (int i=0; i < view.length; i++){
-            if (view[i] == 'S'){
-                if(view[i+1] != 'C') {
-                    jsonObject.put("sat", satellits);
-                }
+            case 13 -> {//TCS
+                addSatStringChannel();
+                getAllTransponders();
             }
-
+            case 14 -> {//CST
+                addSatChannel();
+                removeChannelsTransponder3();
+                getAllChannels();
+            }
+            case 15 -> {//CTS
+                addTranspondersChannel();
+                removeChannelsTransponder2();
+            }
         }
 
     }
@@ -91,10 +104,36 @@ public class JavaToJson {
     public  void removeTransponderSat(){
         satellits.forEach( satellit -> {satellit.setTransponders(null);});
     }
+    public  void removeTransponderSat2(){
+        satellits.forEach( satellit -> {satellit.getTransponders().forEach(transponder ->{
+            transponder.getSatellit().setTransponders(null);
+         });
+        });
+    }
     public void removeChannelsTransponder(){
         satellits.forEach( satellit -> {
             satellit.getTransponders().forEach(transponder -> {
                 transponder.setChannels(null);
+            });
+        });
+    }
+    public void removeChannelsTransponder2(){
+        satellits.forEach( satellit -> {
+            satellit.getTransponders().forEach(transponder -> {
+                transponder.getChannels().forEach(channel -> {
+                    channel.getTransponder().setChannels(null);
+                });
+            });
+        });
+    }
+    public void removeChannelsTransponder3(){
+        satellits.forEach( satellit -> {
+            satellit.getTransponders().forEach(transponder -> {
+                transponder.getChannels().forEach(channel -> {
+                    channel.getSatellit().getTransponders().forEach(transponder1 -> {
+                        transponder1.setChannels(null);
+                    });
+                });
             });
         });
     }
@@ -127,7 +166,16 @@ public class JavaToJson {
         satellits.forEach( satellit -> {
             satellit.getTransponders().forEach(transponder -> {
                 transponder.getChannels().forEach( channel -> {
-                    channel.setSat(satellit);
+                    channel.setSatelit(satellit);
+                });
+            });
+        });
+    }
+    public void addSatStringChannel (){
+        satellits.forEach( satellit -> {
+            satellit.getTransponders().forEach(transponder -> {
+                transponder.getChannels().forEach( channel -> {
+                    channel.setSat(satellit.getName());
                 });
             });
         });

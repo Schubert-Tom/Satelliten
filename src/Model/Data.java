@@ -1,11 +1,16 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Data {
-    private ArrayList<Satellit> data;
+    private List<Satellit> data;
 
-    public ArrayList<Satellit> getData() {
+    public List<Satellit> getData() {
         return data;
+    }
+
+    public void setData(List<Satellit> data) {
+        this.data = data;
     }
 }

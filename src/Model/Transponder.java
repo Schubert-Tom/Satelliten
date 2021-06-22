@@ -9,14 +9,14 @@ public class Transponder {
     private String freq;
     private String sym;
     private ArrayList<Channel> channels;
-
-    //Für view
-    private Satellit satellit = null;
+    private Satellit satellit;
 
     public String getSat() {
         return sat;
     }
-
+    public Satellit getSatellit() {
+        return satellit;
+    }
     public ArrayList<Channel> getChannels() {
         return channels;
     }
@@ -44,7 +44,6 @@ public class Transponder {
     public void setChannels(ArrayList<Channel> channels) {
         this.channels = channels;
     }
-
     public void setSatellit(Satellit satellit) {
         this.satellit = satellit;
     }
