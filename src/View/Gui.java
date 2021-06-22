@@ -7,6 +7,7 @@ package View;
 
 import Model.JsonConverter;
 import FileActions.Reader;
+import Model.Transformer;
 import OutputAggregat.ShowInGui;
 import OutputAggregat.SaveToFile;
 
@@ -141,7 +142,8 @@ public class Gui extends javax.swing.JFrame {
                // dir.setText(c.getCurrentDirectory().toString());
                 Reader reader = new Reader(c.getCurrentDirectory().toString(),c.getSelectedFile().getName());
                JsonConverter jsonConverter = new JsonConverter();
-               jsonConverter.convert(reader.readFile());
+                Transformer transformer = new Transformer( jsonConverter.convert(reader.readFile()));
+
             }
             if (rVal == JFileChooser.CANCEL_OPTION) {
                 outputArea.setText("You pressed cancel");
