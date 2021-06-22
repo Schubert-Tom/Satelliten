@@ -17,8 +17,8 @@ public class Channel {
     private String res;
 
     //Für view
-    private List<Transponder> transpondersList;
-    private String sat;
+    private Transponder transponder = null;
+    private Satellit sat = null;
 
 
     public Channel (String sid){
@@ -64,5 +64,11 @@ public class Channel {
         this.res = res;
     }
 
+    public void setTransponder(Transponder transponder) {
+        this.transponder = transponder;
+    }
 
+    public void setSat(Satellit sat) {
+        this.sat = sat;
+    }
 }

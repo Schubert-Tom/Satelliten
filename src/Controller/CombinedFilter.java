@@ -15,6 +15,7 @@ public class CombinedFilter implements Filter {
     private List<Filter> deepfilter;
 
             private void filter(FilterChannel filter_chan){
+
                 Integer ergebnis=filter.filter_data(sat);       // if trans or channel then return true through overload over Filter Interface from concrete Filter (maybe make abstarct class instead of Filter Interface with auto True return)
                 //1. It is actually True
                 if (ergebnis == 1){

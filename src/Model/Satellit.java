@@ -9,7 +9,7 @@ public class Satellit {
     private List<Transponder> transponders;
 
     //Für view
-    private List<Channel>channels;
+    private List<Channel>channels = null;
 
     public Satellit(List<Transponder> transponders, String name) {
         this.transponders = transponders;
@@ -21,6 +21,10 @@ public class Satellit {
 
     public List<Transponder> getTransponders() {
         return transponders;
+    }
+
+    public void setChannels(List<Channel> channels) {
+        this.channels = channels;
     }
 
     public String getName() {
