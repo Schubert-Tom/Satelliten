@@ -3,5 +3,9 @@ package Model;
 import java.util.ArrayList;
 
 public class Data {
-    ArrayList<Satellit> data;
+    private ArrayList<Satellit> data;
+
+    public ArrayList<Satellit> getData() {
+        return data;
+    }
 }

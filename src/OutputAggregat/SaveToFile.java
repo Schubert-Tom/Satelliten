@@ -1,5 +1,6 @@
-package Model;
+package OutputAggregat;
 
+import FileActions.ErrorHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -10,11 +11,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import FileActions.Writer;
+
 public class SaveToFile implements OutputAggregat {
 
     public void useAggregat(@NotNull JTextArea jta) {
 
         jta.setText("Saving in file: output.json");
+        Writer writer = new Writer("","output.json");
+        final String content = "{\"TEST\":\"test\"}";
+        writer.write(content);
+        /*
         final String content = "{\"TEST\":\"test\"}";
         final Path path = Paths.get("output.json");
 
@@ -27,5 +34,7 @@ public class SaveToFile implements OutputAggregat {
         }catch(Exception e){
             jta.setText("ERROR SAVING FAILED");    }
     }
+
+         */
 }
 
