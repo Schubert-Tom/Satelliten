@@ -20,7 +20,7 @@ public class SaveToFile implements OutputAggregat {
         jta.setText("Saving in file: output.json");
         Writer writer = new Writer("","output.json");
         final String content = "{\"TEST\":\"test\"}";
-        writer.write(content);
+      //  writer.write(content);
         /*
         final String content = "{\"TEST\":\"test\"}";
         final Path path = Paths.get("output.json");
@@ -36,5 +36,6 @@ public class SaveToFile implements OutputAggregat {
     }
 
          */
+    }
 }
 

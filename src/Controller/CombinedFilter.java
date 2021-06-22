@@ -13,46 +13,63 @@ import java.util.stream.Collectors;
 public class CombinedFilter implements Filter {
     private Controller.Filter filter;
     private List<Filter> deepfilter;
-            @Override
-            public Integer filter_data(Satellit sat) {
+
+            private void filter(FilterChannel filter_chan){
                 Integer ergebnis=filter.filter_data(sat);       // if trans or channel then return true through overload over Filter Interface from concrete Filter (maybe make abstarct class instead of Filter Interface with auto True return)
                 //1. It is actually True
                 if (ergebnis == 1){
                     return 1;
                 }
                 //2.  wrong filter --> Transponder Filter or Channel Filter
-                else if(ergebnis==0){
-                    for (int i = 0; i < sat.getTransonder().size(); i++) {
-                        int ret_Trans = filter.filter_data(sat.getTransonder().get(i));
-                        if (ret_Trans==-1){
+                else if(ergebnis==0) {
+                    for (int i = 0; i < sat.getTransponders().size(); i++) {
+                        int ret_Trans = filter.filter_data(sat.getTransponders().get(i));
+                        if (ret_Trans == -1) {
                             // remove if Transponder doesnt match
-                            sat.getTransonder().remove(i);
-                        }
-                        else if (ret_Trans==0){
-                            for (int a = 0; i < sat.getTransonder().get(i).getChannels().size(); i++) {
-                                int ret_Chan = filter.filter_data(sat.getTransonder().get(i));
-                                if (ret_Chan==-1){
+                            sat.getTransponders().remove(i);
+                        } else if (ret_Trans == 0) {
+                            for (int a = 0; i < sat.getTransponders().get(i).getChannels().size(); i++) {
+                                int ret_Chan = filter.filter_data(sat.getTransponders().get(i));
+                                if (ret_Chan == -1) {
                                     // remove if Channel doesnt match
-                                    sat.getTransonder().remove(i);
+                                    sat.getTransponders().remove(i);
                                 }
+                            }
+
+
                         }
-
-
                     }
                 }
-                else if(ergebnis==-1){
-                    return 0;           // remove sat on upper level
+            }
+            private void filter(FilterSatellit filter_sat){
+
+            }
+            private void filter(FilterTransponder filter_con){
+
+            }
+            @Override
+            public Integer filter_data(Satellit sat) {
+                if (this.filter instanceof FilterSatellit){
+                    this.filter_sat();
                 }
-
-
-
-                //data=this.filter.filter_data(data);
-                List<Data> result = new ArrayList<Data>();
-
-                return null;
+                else if (this.filter instanceof FilterTransponder){
+                    this.filter((FilterTransponder) this.filter);
+                }
+                else if (this.filter instanceof FilterChannel){
+                    this.filter((FilterChannel) this.filter);
+                }
             }
             @Override
             public Integer filter_data(Transponder transponder) {
+                if (this.filter instanceof FilterSatellit){
+                    this.filter_sat();
+                }
+                else if (this.filter instanceof FilterTransponder){
+                    this.filter((FilterTransponder) this.filter);
+                }
+                else if (this.filter instanceof FilterChannel){
+                    this.filter((FilterChannel) this.filter);
+                }
                 //data=this.filter.filter_data(data);
                 List<Data> result = new ArrayList<Data>();
                 for (int i = 0; i < this.deepfilter.size(); i++) {
@@ -62,6 +79,15 @@ public class CombinedFilter implements Filter {
             }
             @Override
             public Integer filter_data(Channel channel) {
+                if (this.filter instanceof FilterSatellit){
+                    this.filter_sat();
+                }
+                else if (this.filter instanceof FilterTransponder){
+                    this.filter((FilterTransponder) this.filter);
+                }
+                else if (this.filter instanceof FilterChannel){
+                    this.filter((FilterChannel) this.filter);
+                }
                 //data=this.filter.filter_data(data);
                 List<Data> result = new ArrayList<Data>();
                 for (int i = 0; i < this.deepfilter.size(); i++) {

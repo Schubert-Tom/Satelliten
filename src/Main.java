@@ -1,17 +1,28 @@
 import java.io.File;
 
 import Model.Filter;
+import Model.*;
 import com.google.gson.*;
+import org.jetbrains.annotations.NotNull;
 //import org.json.simple.JSONArray;
 //import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.util.Iterator;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String json = "{\n" +
+        Satellit sat = new Satellit("This is the Sat Name");
+
+        Channel chan1 = new Channel("SID 1234");
+        Channel chan2 = new Channel("SID 4567");
+        List<Channel> listChannels = new ArrayList<>();
+        listChannels.add(chan1);
+        listChannels.add(chan2);
+        extraLists<Satellit, Channel> el = new extraLists<>(listChannels, sat);
+    }
+       /* String json = "{\n" +
                 "  \"filarg\": null,\n" +
                 "  \"filter\": [\n" +
                 "    {\n" +

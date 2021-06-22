@@ -5,6 +5,10 @@
  */
 package View;
 
+import Model.JsonConverter;
+import FileActions.Reader;
+import Model.Transformer;
+
 import OutputAggregat.ShowInGui;
 import OutputAggregat.SaveToFile;
 
@@ -137,6 +141,10 @@ public class Gui extends javax.swing.JFrame {
             if (rVal == JFileChooser.APPROVE_OPTION) {
                 outputArea.setText(c.getSelectedFile().getName());
                // dir.setText(c.getCurrentDirectory().toString());
+                Reader reader = new Reader(c.getCurrentDirectory().toString(),c.getSelectedFile().getName());
+               JsonConverter jsonConverter = new JsonConverter();
+                Transformer transformer = new Transformer( jsonConverter.convert(reader.readFile()));
+
             }
             if (rVal == JFileChooser.CANCEL_OPTION) {
                 outputArea.setText("You pressed cancel");
@@ -190,7 +198,7 @@ public class Gui extends javax.swing.JFrame {
             ShowInGui sig = new ShowInGui();
             sig.useAggregat(outputArea);
         }
-        
+
     }//GEN-LAST:event_runActionPerformed
 
     /**
