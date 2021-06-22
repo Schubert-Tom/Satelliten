@@ -34,7 +34,7 @@ public class CombinedFilter implements Filter {
                                     // remove if Channel doesnt match
                                     sat.getTransponders().remove(i);
                                 }
-                            }
+                           }
 
 
                         }

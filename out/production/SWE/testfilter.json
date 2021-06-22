@@ -1,0 +1,27 @@
+
+[
+  {
+    "Satellit": "A",
+    "channelNum": 20
+  },
+  { "Transponder": [
+      {
+        "Transponder": "A",
+        "channelNum": 20
+      },
+      {
+        "Transponder": "B",
+        "channelNum": 1
+      }],
+      "verknupfung": "|"
+    },
+  {
+    "channelType": "tv",
+    "num": 20
+  },
+  {
+    "freqMin": 20000,
+    "freqMax": null
+  }
+]
+

@@ -2,11 +2,11 @@ package Model;
 
 import org.json.simple.JSONObject;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class JavaToJson {
 
-    public void transform(List<Satellit> satellits, char[] view){
+    public void transform(ArrayList<Satellit> satellits, char[] view){
         //Creating a JSONObject object
         JSONObject jsonObject = new JSONObject();
         for (int i=0; i < view.length; i++){

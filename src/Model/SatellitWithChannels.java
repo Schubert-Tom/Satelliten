@@ -8,6 +8,6 @@ public class SatellitWithChannels <T> extends Satellit{
 
     public SatellitWithChannels(List<T> ts) {
         this.ts = ts;
-        super.
+
     }
 }

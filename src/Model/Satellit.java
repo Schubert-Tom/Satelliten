@@ -31,10 +31,5 @@ public class Satellit {
         this.transponders = transponders;
     }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e54029d042de495ce1bc73396355987788795026
 }
 

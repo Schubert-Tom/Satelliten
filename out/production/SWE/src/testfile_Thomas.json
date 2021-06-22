@@ -1,0 +1,108 @@
+{
+  "view": ["Satellit","Transponder","Channel"],
+  "cond": {
+    filterargument: "Satelit A"
+    filter: [
+      {
+        "filterargument": "TransponderB",
+        "filter": [{
+          "filterargument": "channelType TV"
+        }]
+      },
+      {
+
+      }
+    ]
+  }
+      ["Transponder:B": [
+        "channelType: TV": {
+          "minfreq: 2000":{
+            "count 4":{}
+          }
+      ],
+
+      },
+    },
+      "Transponder:C": {
+        "Tranponder:D":{}
+      }
+        ]
+    }
+  },
+}
+
+
+object --> gib mir alle A ---> Filter stufe1_object
+
+  Filter stufe1_object--> 1. TransponderB --> result1
+                          2. TransponderC --> result2,
+
+        abstarct class Filterarg{
+        Name
+
+      },
+
+FilterArgTrans extend Filterarg,{
+        MinFreq
+        MaxFreq
+                ..
+      },
+
+FiltersArgSat extend Filterarg, {
+        Pol
+                ...
+      },
+
+FiltersArgChannel extends Filterarg {
+        MinSid,
+        MaxSid
+                ...
+      },
+
+Filter {
+     filterarg ==> createFilter() ---> Abstarct Factory PAttern
+     Arraylist <Filter> subfilters []
+      }
+
+        filargs ^ (f1 v f2)
+        filargs leer wenn nur veroderung
+
+filarg...,
+Filter <Filter> [
+        filarg... (f0)
+        tiefenfilter:[f1 {
+          filarg...
+          filters<Filter> [f1.1, f1.2]
+        },
+        f2 {
+          }
+      ],
+
+f0 v ((f1 v (f1.1 ^ f1.2)) ^ f2)
+
+
+A v (B ^ C ^ D ^ E ^ F) = (A v B) ^ (A v C) ^ (A v D)
+23
+23
+4
+234
+23
+423
+4
+233
+4
+
+(A v B) ^ C = finalFilter
+------->    result1,result2,result3               bsp: resultX -->        Satellit --> Transponder --> Channel
+
+
+result filterB(object){
+
+}
+
+result=filterB(filterchannel())
+
+
+filter(object)
+filterC(object),
+
