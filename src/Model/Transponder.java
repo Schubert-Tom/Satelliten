@@ -10,6 +10,14 @@ public class Transponder {
     private String sym;
     private ArrayList<Channel> channels;
 
+    public String getSat() {
+        return sat;
+    }
+
+    public ArrayList<Channel> getChannels() {
+        return channels;
+    }
+
     public void setPol(String pol) {
         this.pol = pol;
     }
