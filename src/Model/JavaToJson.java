@@ -14,84 +14,84 @@ public class JavaToJson {
         this.satellits = satellits;
     }
 
-    public String transform( int view, int count){
+    public String transform( ViewCode view, CountCode count){
         //Creating a JSONObject object
         JSONObject jsonObject = new JSONObject();
         switch (view) {
-            case 1 -> { //S
+            case S -> { //S
                 removeTransponderFromSat();
                 return getAllSat();
             }
-            case 2, 6 -> {//T//TS
+            case T, TS -> {//T//TS
 
                 removeChannelsFromTransponder();
                 return getAllTransponders();
             }
-            case 3 ->{//C
+            case C ->{//C
                 return getAllChannels();
             }
-            case 4 -> {//ST //count T
+            case ST -> {//ST //count T
                 removeChannelsFromTransponder();
-                if(count ==1)
+                if(count ==CountCode.countFirstOrder)
                    countTranspondersForSat();
                 return getAllSat();
             }
-            case 5 -> {//SC //count C
+            case SC -> {//SC //count C
                 addChannelsToSat();
                 removeTransponderFromSat();
-                if(count ==1)
+                if(count == CountCode.countFirstOrder)
                     countChannelsForSat();
                 return getAllSat();
             }
-            case 7 ->{//TC //count C
-                if(count ==1)
+            case TC ->{//TC //count C
+                if(count ==CountCode.countFirstOrder)
                     countChannelsForTrans();
                 return getAllTransponders();
             }
-            case 8 -> {//CS
+            case CS -> {//CS
                 addSatStringToChannel();
                 return getAllChannels();
             }
-            case 9, 15 -> {//CT//CTS
+            case CT, CTS -> {//CT//CTS
                 addTranspondersToChannel();
                 removeChannelsFromTransponder2();
                 return getAllChannels();
             }
-            case 10 ->{//STC //count T //count C
-                if(count == 1 || count ==3)
+            case STC ->{//STC //count T //count C
+                if(count == CountCode.countFirstOrder || count ==CountCode.getCountFirstAndSecondOrder)
                     countTranspondersForSat();
-                if(count == 2 || count ==3)
+                if(count == CountCode.countSecondOrder || count ==CountCode.getCountFirstAndSecondOrder)
                     countChannelsForTrans();
                 return getAllSat();
             }
-            case 11 -> {//SCT //count C
+            case SCT -> {//SCT //count C
                 addTranspondersToChannel();
                 removeChannelsFromTransponder2();
                 addChannelsToSat();
                 removeTransponderFromSat();
-                if(count ==1)
+                if(count ==CountCode.countFirstOrder)
                     countChannelsForSat();
                 return getAllSat();
             }
-            case 12 -> {//TSC //count C
+            case TSC -> {//TSC //count C
                 addChannelsToSat();
                 addSatToTransponder();
                 removeTransponderFromSat2();
                 removeChannelsFromTransponder();
-                if(count == 2)
+                if(count == CountCode.countSecondOrder)
                     countChannelsForSat2();
                 return getAllTransponders();
             }
-            case 13 -> {//TCS //count C
+            case TCS -> {//TCS //count C
                 addSatStringToChannel();
-                if(count == 1)
+                if(count == CountCode.countFirstOrder)
                     countChannelsForTrans();
                 return getAllTransponders();
             }
-            case 14 -> {//CST //count T
+            case CST -> {//CST //count T
                 addSatToChannel();
                 removeChannelsFromTransponder3();
-                if(count == 2)
+                if(count == CountCode.countSecondOrder)
                     countTranspondersForSat2();
                 return getAllChannels();
             }

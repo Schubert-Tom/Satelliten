@@ -5,12 +5,11 @@
  */
 package View;
 
-import Model.JavaToJson;
-import Model.JsonConverter;
+import Controller.*;
+import Model.*;
 import FileActions.Reader;
-import Model.Satellit;
-import Model.Transformer;
 
+import Model.Filter.Satellit.FilterForSatellitName;
 import OutputAggregat.ShowInGui;
 import OutputAggregat.SaveToFile;
 
@@ -27,6 +26,7 @@ import java.util.List;
 public class Gui extends javax.swing.JFrame {
 
     private List<Satellit> satellitList;
+    private Aggregat aggregat;
 
     /**
      * Creates new form ContactEditorUI
@@ -159,7 +159,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadDataActionPerformed
 
     private void loadAggregatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAggregatActionPerformed
-
+        aggregat = new Aggregat(new CompleteFilter(new FilterSatellit(new FilterForSatellitName("TEST")),new FilterTransponder(null),new FilterChannel(null)), ViewCode.STC, CountCode.no);
         
     }//GEN-LAST:event_loadAggregatActionPerformed
 
@@ -169,7 +169,7 @@ public class Gui extends javax.swing.JFrame {
 
         //transform nach Aggregat
         JavaToJson jts = new JavaToJson(satellitList);
-        String jsonString = jts.transform(1, 0);
+        String jsonString = jts.transform(aggregat.getView(), aggregat.getCount());
         if(outputType.isSelected()){
         //saveReport();
             SaveToFile stf = new SaveToFile();
@@ -182,62 +182,6 @@ public class Gui extends javax.swing.JFrame {
 
     }//GEN-LAST:event_runActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gui().setVisible(true);
-            }
-        });
-    }
-/*
-    public void saveReport()
-{
-    saveToFile stf = new saveToFile();
-    stf.useAggregat(outputArea);
-
-    outputArea.setText("Saving in file: logKMAX.txt");
-    final String content = "TEST";
-    final Path path = Paths.get("logKMAX.txt");
-
-    try (
-        final BufferedWriter writer = Files.newBufferedWriter(path,
-            StandardCharsets.UTF_8, StandardOpenOption.CREATE);
-    ) {
-        writer.write(content);
-        writer.flush();
-    }catch(Exception e){
-        outputArea.setText("ERROR SAVING FAILED");    }
-
-
-}*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton loadData;
     private javax.swing.JButton loadAggregat;
