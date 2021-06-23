@@ -71,9 +71,9 @@ public class JavaToJson {
                 return getAllChannels();
             }
             case STC ->{//STC //count T //count C
-                if(count == CountCode.countFirstOrder || count ==CountCode.getCountFirstAndSecondOrder)
+                if(count == CountCode.countFirstOrder || count ==CountCode.CountFirstAndSecondOrder)
                     countTranspondersForSat();
-                if(count == CountCode.countSecondOrder || count ==CountCode.getCountFirstAndSecondOrder)
+                if(count == CountCode.countSecondOrder || count ==CountCode.CountFirstAndSecondOrder)
                     countChannelsForTrans();
                 return getAllSat();
             }

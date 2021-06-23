@@ -111,17 +111,23 @@ public class Transponder {
         return satellit;
     }
     /**
-     * Set-Funktion zum überschreiben der Transponder-Liste
-     * @param transponders, setzen von Transponder-Liste
+     * Set-Funktion zum überschreiben des Satelliten Namen
+     * @param satellit, setzen von Satelliten Namen
      */
     public void setSatellit(Satellit satellit) {
         this.satellit = satellit;
     }
-
+    /**
+     * Get-Funktion zum Laden des count Feldes
+     * @return transponders, aktuell gespeichertes count Feld
+     */
     public Integer getCount() {
         return count;
     }
-
+    /**
+     * Set-Funktion zum überschreiben des count Feldes
+     * @param count, setzen von count Feld
+     */
     public void setCount(Integer count) {
         this.count = count;
     }

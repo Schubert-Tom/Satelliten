@@ -1,3 +1,4 @@
+import ExternalWorkload.ByteClassLoader;
 import View.Gui;
 import java.util.function.BiConsumer;
 import java.lang.reflect.Method;
@@ -38,8 +39,16 @@ public class Main {
         //</editor-fold>
         //</editor-fold>
 
+        /*
+        ByteClassLoader loader = new ByteClassLoader();
 
-
+        try {
+            loader.defineClass(nameOfClass, Files.readAllBytes(path));
+            loader.loadClass(nameOfClass);
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        */
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

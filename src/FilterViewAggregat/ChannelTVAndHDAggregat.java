@@ -1,15 +1,24 @@
+package FilterViewAggregat;
+
 import Controller.*;
 import Model.CountCode;
 import Model.Filter.Channel.FilterForChannelRes;
 import Model.Filter.Channel.FilterForChannelType;
 import Model.ViewCode;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-
-public class SatAggregat implements Supplier<Aggregat> {
-
+/**
+ * Klasse zum Erstellen eines Beispielaggregates
+ * @author 4328112, 1319658, 1060449
+ * @version 3.1
+ */
+public class ChannelTVAndHDAggregat implements Supplier<Aggregat> {
+    /**
+     * Funktion zum Erstellen eines Beispielaggregates wobei nach folgendem gefiltert wird:
+     * Channeltype TV AND Channelresolution HD
+     * View Sateellit -> Channel, Counting no
+     * @return name, der aktuell gespeicherte Name
+     */
     @Override
     public Aggregat get() {
         // Erzeugen des Filters
@@ -25,7 +34,7 @@ public class SatAggregat implements Supplier<Aggregat> {
         // Oder VErknüpfung
         FilterChannel chanFilter = new FilterChannel(null,andFilter);
         CompleteFilter filter = new CompleteFilter(satFilter,transFilter,chanFilter);
-        // Thomas mach die view
+        //  view and count settings
         ViewCode view = ViewCode.SC;
         CountCode count = CountCode.no;
         Aggregat aggregat = new Aggregat(filter,view,count);

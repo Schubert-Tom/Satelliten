@@ -17,24 +17,14 @@ import java.util.function.BiConsumer;
 
 public class ExportData {
     public static void export(String location, String nameOfClass, JFrame jFrame, String content){
-        String pathString = location + File.separator + nameOfClass;
-        Path path = Paths.get(pathString);
-        ByteClassLoader loader = new ByteClassLoader();
-
-        try{
-            loader.defineClass(nameOfClass, Files.readAllBytes(path));
-            loader.loadClass(nameOfClass);
-        } catch(ClassNotFoundException| IOException e){
-            e.printStackTrace();
-        }
-
+        nameOfClass = nameOfClass.split(".class")[0];
+        Loader.loadClass(location, nameOfClass);
         try{
             Class<? extends BiConsumer<String, JFrame>> outputClass = (Class<? extends BiConsumer<String, JFrame>>) Class.forName(nameOfClass);
-            Constructor<? extends BiConsumer<String, JFrame>> constructor = outputClass.getConstructor();
-            Object output = constructor.newInstance();
+            Object output = Loader.buildObject(outputClass);
             Method methode = outputClass.getMethod("accept", String.class, JFrame.class);
             methode.invoke(output, content, jFrame);
-        } catch(ClassNotFoundException|NoSuchMethodException|InstantiationException|IllegalAccessException|InvocationTargetException e) {
+        } catch(ClassNotFoundException|NoSuchMethodException| IllegalAccessException|InvocationTargetException e) {
             e.printStackTrace();
             throw new RuntimeException("Laden und Ausführen der Ausgabe nicht möglich.");
         }

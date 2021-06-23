@@ -8,7 +8,7 @@ package View;
 import Controller.*;
 import Model.*;
 import FileActions.Reader;
-import ExternalWorkload.ExportData;
+import ExternalWorkload.*;
 
 import Model.Filter.Satellit.FilterForSatellitName;
 
@@ -103,7 +103,7 @@ public class Gui extends javax.swing.JFrame {
 
         filenameOutputField.setText("Output Filename");
 
-        filenameAggregatField.setText("Aggregat Filename");
+        filenameAggregatField.setText("no Aggregat chosen");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,18 +112,18 @@ public class Gui extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(loadData)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(chooseAggregat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(filenameAggregatField)
-                                                        .addComponent(chooseOutput))
-                                                .addComponent(run)
-                                                .addComponent(filenameOutputField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(save))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(loadData)
+                                                        .addComponent(chooseAggregat)
+                                                        .addComponent(chooseOutput)
+                                                        .addComponent(run)
+                                                        .addComponent(save)
+                                                        .addComponent(filenameOutputField, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                                .addContainerGap())
+                                        .addComponent(filenameAggregatField)))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,14 +135,14 @@ public class Gui extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(chooseAggregat)
                                                 .addGap(4, 4, 4)
-                                                .addComponent(filenameAggregatField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(11, 11, 11)
+                                                .addComponent(filenameAggregatField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(run)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(chooseOutput)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(filenameOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
+                                                .addComponent(filenameOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(save))
                                         .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(30, Short.MAX_VALUE))
@@ -202,7 +202,7 @@ public class Gui extends javax.swing.JFrame {
         c.setFileFilter(new FileFilter() {
 
             public String getDescription() {
-                return "Aggregat File";
+                return "*.class";
             }
 
             public boolean accept(File f) {
@@ -220,15 +220,9 @@ public class Gui extends javax.swing.JFrame {
             this.pathAggregat = c.getCurrentDirectory().toString();
             this.fileNameAggregat = c.getSelectedFile().getName();
             this.filenameAggregatField.setText(fileNameAggregat);
+            this.aggregat = GetAggregat.get(pathAggregat,fileNameAggregat);
         }
 
-
-
-        this.aggregat = new Aggregat(new CompleteFilter(
-                new FilterSatellit(new FilterForSatellitName("BulgariaSat-1"),null),
-                null,
-                null),
-                ViewCode.STC, CountCode.no);
         
     }//GEN-LAST:event_loadAggregatActionPerformed
     /**
@@ -238,6 +232,7 @@ public class Gui extends javax.swing.JFrame {
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
         // TODO add your handling code here:
         //filter nach Aggregat
+        if(this.aggregat != null)
         this.data.setData(aggregat.filter(rawData).getData());
         //transform nach Aggregat
 
@@ -255,7 +250,7 @@ public class Gui extends javax.swing.JFrame {
         c.setFileFilter(new FileFilter() {
 
             public String getDescription() {
-                return "OutputType File";
+                return "*.class";
             }
 
             public boolean accept(File f) {

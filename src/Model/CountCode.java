@@ -9,5 +9,5 @@ package Model;
  * @version 1.1
  */
 public enum CountCode {
-    no,countFirstOrder,countSecondOrder, getCountFirstAndSecondOrder
+    no,countFirstOrder,countSecondOrder, CountFirstAndSecondOrder
 }
