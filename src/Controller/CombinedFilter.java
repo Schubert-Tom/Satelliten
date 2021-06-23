@@ -1,3 +1,5 @@
+/*
+
 package Controller;
 import Controller.Filter;
 import Model.Channel;
@@ -153,7 +155,7 @@ public class CombinedFilter implements Filter {
 
 
 
-        /*// Combine data && result structure
+        // Combine data && result structure
         for (int i=0;i<result.size()-1;i++){
             komm ts, sprich j
         }

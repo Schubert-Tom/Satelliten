@@ -1,6 +1,7 @@
 package Controller;
 
 public class Aggregat {
-    CompleteFilter filter;
-    Integer view;
+    private CompleteFilter filter;
+    private int view;
+    private int count;
 }

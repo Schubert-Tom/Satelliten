@@ -11,16 +11,11 @@ public class FilterSatellit{
     // FilterSatelliten in deepfilter werden miteinander verodert
     private FilterForSatellit filter;
     private java.util.List<FilterSatellit> deepFilter;
-    public Data filter_data(Data data){
+    public Boolean filter_data(Satellit satellit){
         // use filter on data (AND operation)
-        data.setData(this.filter.filter(data.getData()));
-        // start all filters in deepfilter (OR operation)
-        List<Data> filtered_data_by_or = this.deepFilter.stream().map( filter -> filter.filter_data(data)).collect( Collectors.toList());
-        // combine all filtered results and delete distinct results for OR-operation
-        data.setData((List<Satellit>)filtered_data_by_or.stream().flatMap(flat_data -> flat_data.getData().stream()).distinct().collect(Collectors.toList()));
-        return data;
+        return this.filter.filter(satellit) && this.getDeepFilterBoolean(satellit);
     };
-    public void filter(){
-
+    public Boolean getDeepFilterBoolean(Satellit satellit){
+        return this.deepFilter.stream().anyMatch(filter->filter.filter_data(satellit));
     }
 }

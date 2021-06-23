@@ -16,6 +16,11 @@ public class Channel {
     private String pack;
     private String res;
 
+    //Für View
+    private Transponder transponder = null;
+    private Satellit satellit = null;
+    private String sat = null;
+    private Integer count = null;
 
     public Channel() {
     }
@@ -104,4 +109,35 @@ public class Channel {
         return res;
     }
 
+    public Transponder getTransponder() {
+        return transponder;
+    }
+
+    public void setTransponder(Transponder transponder) {
+        this.transponder = transponder;
+    }
+
+    public Satellit getSatellit() {
+        return satellit;
+    }
+
+    public void setSatellit(Satellit satellit) {
+        this.satellit = satellit;
+    }
+
+    public String getSat() {
+        return sat;
+    }
+
+    public void setSat(String sat) {
+        this.sat = sat;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 }

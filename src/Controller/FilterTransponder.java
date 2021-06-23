@@ -2,21 +2,21 @@ package Controller;
 
 import Model.Data;
 import Model.Satellit;
+import Model.Transponder;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.*;
 
 public class FilterTransponder{
+    // filter und deepfilter werden miteinander verundet
+    // FilterSatelliten in deepfilter werden miteinander verodert
     private FilterForTransponder filter;
-    private List<FilterTransponder> deepfilter;
-    public Data filter_data(Data data){
-        // use filter on data (AND operation) for all Transponders
-        data.getData().stream().forEach(satellit -> satellit.setTransponders(this.filter.filter(satellit.getTransponders())));
-
-        // start all filters in deepfilter (OR operation)
-        //List<Data> filtered_data_by_or = this.deepFilter.stream().map( filter -> filter.filter_data(data)).collect( Collectors.toList());
-        // combine all filtered results and delete distinct results for OR-operation
-        //data.setData((List<Satellit>)filtered_data_by_or.stream().flatMap(flat_data -> flat_data.getData().stream()).distinct().collect(Collectors.toList()));
-        return data;
+    private java.util.List<FilterTransponder> deepFilter;
+    public Boolean filter_data(Transponder transponder){
+        // use filter on data (AND operation)
+        return this.filter.filter(transponder) && this.getDeepFilterBoolean(transponder);
     };
+    public Boolean getDeepFilterBoolean(Transponder transponder){
+        return this.deepFilter.stream().anyMatch(filter->filter.filter_data(transponder));
+    }
 }

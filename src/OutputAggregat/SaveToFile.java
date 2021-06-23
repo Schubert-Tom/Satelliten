@@ -15,12 +15,11 @@ import FileActions.Writer;
 
 public class SaveToFile implements OutputAggregat {
 
-    public void useAggregat(@NotNull JTextArea jta) {
+    public void useAggregat(@NotNull JTextArea jta, String jsonString) {
 
         jta.setText("Saving in file: output.json");
         Writer writer = new Writer("","output.json");
-        final String content = "{\"TEST\":\"test\"}";
-      //  writer.write(content);
+        writer.write(jsonString);
         /*
         final String content = "{\"TEST\":\"test\"}";
         final Path path = Paths.get("output.json");

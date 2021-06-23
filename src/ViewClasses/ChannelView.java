@@ -60,4 +60,6 @@ public class ChannelView extends Channel {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    toJsonstring = Transponder: ....., Liste []
 }

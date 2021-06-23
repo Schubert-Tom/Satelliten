@@ -5,8 +5,10 @@
  */
 package View;
 
+import Model.JavaToJson;
 import Model.JsonConverter;
 import FileActions.Reader;
+import Model.Satellit;
 import Model.Transformer;
 
 import OutputAggregat.ShowInGui;
@@ -17,12 +19,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-
+import java.util.List;
 /**
  *
  * @author Thomas Khiem
  */
 public class Gui extends javax.swing.JFrame {
+
+    private List<Satellit> satellitList;
 
     /**
      * Creates new form ContactEditorUI
@@ -144,7 +148,7 @@ public class Gui extends javax.swing.JFrame {
                 Reader reader = new Reader(c.getCurrentDirectory().toString(),c.getSelectedFile().getName());
                JsonConverter jsonConverter = new JsonConverter();
                 Transformer transformer = new Transformer( jsonConverter.convert(reader.readFile()));
-
+                satellitList =  transformer.transform();
             }
             if (rVal == JFileChooser.CANCEL_OPTION) {
                 outputArea.setText("You pressed cancel");
@@ -155,48 +159,25 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadDataActionPerformed
 
     private void loadAggregatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAggregatActionPerformed
-        // TODO add your handling code here:
-          JFileChooser c = new JFileChooser();
-            c.setAcceptAllFileFilterUsed(false);
-            c.setFileFilter(new FileFilter() {
 
-                public String getDescription() {
-                    return "JSON Files (*.json)";
-                }
-
-                public boolean accept(File f) {
-                    if (f.isDirectory()) {
-                        return true;
-                    } else {
-                        String filename = f.getName().toLowerCase();
-                        return filename.endsWith(".json");
-                    }
-                }
-            });
-            // Demonstrate "Open" dialog:
-            int rVal = c.showOpenDialog(Gui.this);
-            if (rVal == JFileChooser.APPROVE_OPTION) {
-                outputArea.setText(c.getSelectedFile().getName());
-               // dir.setText(c.getCurrentDirectory().toString());
-            }
-            if (rVal == JFileChooser.CANCEL_OPTION) {
-                outputArea.setText("You pressed cancel");
-                //dir.setText("");
-            }
         
     }//GEN-LAST:event_loadAggregatActionPerformed
 
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
         // TODO add your handling code here:
         //filter nach Aggregat
+
+        //transform nach Aggregat
+        JavaToJson jts = new JavaToJson(satellitList);
+        String jsonString = jts.transform(1, 0);
         if(outputType.isSelected()){
         //saveReport();
             SaveToFile stf = new SaveToFile();
-            stf.useAggregat(outputArea);
+            stf.useAggregat(outputArea, jsonString);
         } else{
         //outputArea.setText("Output string");
             ShowInGui sig = new ShowInGui();
-            sig.useAggregat(outputArea);
+            sig.useAggregat(outputArea, jsonString);
         }
 
     }//GEN-LAST:event_runActionPerformed

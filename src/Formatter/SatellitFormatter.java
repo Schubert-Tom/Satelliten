@@ -1,5 +1,25 @@
 package Formatter;
 
+/*
+
+1. Aufbau 1. Stufe      S           T           C
+          2. STufe      T k Ck      C k S k     T? S?   --> filter nach TRansponder mit kanal und entnehme?
+          3. Stufe      C k T?*     S?* ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
 import Model.Satellit;
 import ViewClasses.SatellitView;
 import org.apache.commons.beanutils.BeanUtils;

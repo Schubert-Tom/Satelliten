@@ -17,7 +17,7 @@ public class Writer {
         this.filePath = path + File.pathSeparator + name;
     }
 
-    public <T extends ErrorHandler> void write(String content,  T errorHandler)
+    public void write(String content)
     {
         Path path = Paths.get(this.filePath);
         try {
@@ -26,9 +26,7 @@ public class Writer {
             writer.write(content);
             writer.flush();
         } catch(IOException e)
-        {
-            String message = "An error occurred whilst writing the result to the given path.\n Error Message: " + e;
-            errorHandler.resolveError(message);
+        { e.printStackTrace();
         }
     }
 }

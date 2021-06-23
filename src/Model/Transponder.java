@@ -1,5 +1,5 @@
 package Model;
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class Transponder {
@@ -8,14 +8,17 @@ public class Transponder {
     private String orbital;
     private String freq;
     private String sym;
-    private ArrayList<Channel> channels;
+    private List<Channel> channels;
 
+    //Für View
+    private Satellit satellit = null;
+    private Integer count = null;
 
     public String getSat() {
         return sat;
     }
 
-    public ArrayList<Channel> getChannels() {
+    public List<Channel> getChannels() {
         return channels;
     }
 
@@ -39,7 +42,7 @@ public class Transponder {
         this.sym = sym;
     }
 
-    public void setChannels(ArrayList<Channel> channels) {
+    public void setChannels(List<Channel> channels) {
         this.channels = channels;
     }
 
@@ -59,4 +62,19 @@ public class Transponder {
         return sym;
     }
 
+    public Satellit getSatellit() {
+        return satellit;
+    }
+
+    public void setSatellit(Satellit satellit) {
+        this.satellit = satellit;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 }
