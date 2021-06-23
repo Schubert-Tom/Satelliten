@@ -8,6 +8,7 @@ package View;
 import Controller.*;
 import Model.*;
 import FileActions.Reader;
+import ExternalWorkload.ExportData;
 
 import Model.Filter.Satellit.FilterForSatellitName;
 
@@ -16,8 +17,11 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 /**
- *
- * @author Thomas Khiem
+ * Klasse beschreibt eine GUI
+ * Ausgabefeld, mehrere Buttons für Laden von Daten /Aggregaten / Outputtypen und
+ * Durchführung (speichern undanzeigen/speichern)
+ * @author 4328112, 1319658, 1060449
+ * @version 4.8
  */
 public class Gui extends javax.swing.JFrame {
 
@@ -52,8 +56,8 @@ public class Gui extends javax.swing.JFrame {
         run = new javax.swing.JButton();
         save = new javax.swing.JButton();
         chooseOutput = new javax.swing.JButton();
-        filename = new javax.swing.JTextField();
-        filenameAggregat = new javax.swing.JTextField();
+        filenameOutputField = new javax.swing.JTextField();
+        filenameAggregatField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,9 +101,9 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        filename.setText("Output Filename");
+        filenameOutputField.setText("Output Filename");
 
-        filenameAggregat.setText("Aggregat Filename");
+        filenameAggregatField.setText("Aggregat Filename");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,10 +118,10 @@ public class Gui extends javax.swing.JFrame {
                                                 .addComponent(loadData)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(chooseAggregat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(filenameAggregat)
+                                                        .addComponent(filenameAggregatField)
                                                         .addComponent(chooseOutput))
                                                 .addComponent(run)
-                                                .addComponent(filename, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(filenameOutputField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(save))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -131,13 +135,13 @@ public class Gui extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(chooseAggregat)
                                                 .addGap(4, 4, 4)
-                                                .addComponent(filenameAggregat, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(filenameAggregatField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(11, 11, 11)
                                                 .addComponent(run)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(chooseOutput)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(filenameOutputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(save))
                                         .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,7 +150,10 @@ public class Gui extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
+    /**
+     * Funktion zum Laden der Satelliten JSON Datei per FileChooser bei Buttonpress
+     * Danach TRansformierung von JSON zu Java Objektstruktur Satellit -> Transponder -> Channel
+     */
     private void loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
      
             JFileChooser c = new JFileChooser();
@@ -184,7 +191,10 @@ public class Gui extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_LoadDataActionPerformed
-
+    /**
+     * Funktion zum Laden der Aggregats Datei per Filechooser bei Buttonpress
+     * @param evt Event Button pressed
+     */
     private void chooseAggregatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAggregatActionPerformed
 
         JFileChooser c = new JFileChooser();
@@ -200,17 +210,18 @@ public class Gui extends javax.swing.JFrame {
                     return true;
                 } else {
                     String filename = f.getName().toLowerCase();
-                    return filename.endsWith(".java");
+                    return filename.endsWith(".class");
                 }
             }
         });
         // Demonstrate "Open" dialog:
         int rVal = c.showOpenDialog(Gui.this);
         if (rVal == JFileChooser.APPROVE_OPTION) {
-            pathAggregat = c.getCurrentDirectory().toString();
-            fileNameAggregat = c.getSelectedFile().getName();
-            filenameAggregat.setText(fileNameAggregat);
+            this.pathAggregat = c.getCurrentDirectory().toString();
+            this.fileNameAggregat = c.getSelectedFile().getName();
+            this.filenameAggregatField.setText(fileNameAggregat);
         }
+
 
 
         this.aggregat = new Aggregat(new CompleteFilter(
@@ -220,7 +231,10 @@ public class Gui extends javax.swing.JFrame {
                 ViewCode.STC, CountCode.no);
         
     }//GEN-LAST:event_loadAggregatActionPerformed
-
+    /**
+     * Funktion zum Durchführung des Filterns bei Buttonpress
+     * @param evt Event Button pressed
+     */
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
         // TODO add your handling code here:
         //filter nach Aggregat
@@ -229,6 +243,11 @@ public class Gui extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_runActionPerformed
+
+    /**
+     * Funktion zur Auswahl des OutputTypes per FileChooser bei Buttonpress
+     * @param evt Event Button pressed
+     */
     private void chooseOutputActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         JFileChooser c = new JFileChooser();
@@ -244,7 +263,7 @@ public class Gui extends javax.swing.JFrame {
                     return true;
                 } else {
                     String filename = f.getName().toLowerCase();
-                    return filename.endsWith(".java");
+                    return filename.endsWith(".class");
                 }
             }
         });
@@ -253,35 +272,29 @@ public class Gui extends javax.swing.JFrame {
         if (rVal == JFileChooser.APPROVE_OPTION) {
             pathOutputType = c.getCurrentDirectory().toString();
             filenameOutputType = c.getSelectedFile().getName();
-            filename.setText(filenameOutputType);
+            filenameOutputField.setText(filenameOutputType);
+
         }
     }
 
+    /**
+     * Funktion zum Durchführung der Outputmethode bei Buttonpress
+     * @param evt Event Button pressed
+     */
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         JavaToJson jts = new JavaToJson(data.getData());
         String jsonString = jts.transform(aggregat.getView(), aggregat.getCount());
-        /*
-        if(outputType.isSelected()){
-            //saveReport();
+        ExportData.export(pathOutputType,filenameOutputType,Gui.this, jsonString);
 
-            SaveToFile stf = new SaveToFile();
-            stf.useAggregat(outputArea, jsonString);
-        } else{
-            //outputArea.setText("Output string");
-            ShowInGui sig = new ShowInGui();
-            sig.useAggregat(outputArea, jsonString);
-        }
-
-         */
     }
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton chooseAggregat;
     private javax.swing.JButton chooseOutput;
-    private javax.swing.JTextField filename;
-    private javax.swing.JTextField filenameAggregat;
+    private javax.swing.JTextField filenameOutputField;
+    private javax.swing.JTextField filenameAggregatField;
     private javax.swing.JButton loadData;
     private javax.swing.JTextArea outputArea;
     private javax.swing.JButton run;

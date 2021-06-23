@@ -2,14 +2,28 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Klasse transformiert den konvertierten JSON String  zur gewünschten Objektstruktur STC
+ * @author 4328112, 1319658, 1060449
+ * @version 2.3
+ */
 public class Transformer {
     private List<Transponder> transponders;
 
+    /**
+     * Konstruktor für Klasse Transformer
+     * @param transponders, zu transformierende transponder Liste
+     * @post Instanz von Transformer erstellt
+     */
     public Transformer(List<Transponder> transponders) {
         this.transponders = transponders;
     }
 
+    /**
+     * Funktion zum Durchführen des filter Filters auf dem aktuellen Channel
+     * @return List<Satellit> Liste von Satelliten
+     * @post neue Objektstruktur STC
+     */
     public List<Satellit> transform(){
           List<Satellit> satellits = new ArrayList<Satellit>();
 

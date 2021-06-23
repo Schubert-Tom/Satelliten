@@ -1,5 +1,7 @@
 package Controller;
 import Model.Channel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +20,23 @@ public class FilterChannel{
     /**
      * Konstruktor für Klasse FilterChannel
      * @param filter, filter der einen konkreten Filter für diese Ebene definiert
-     * @param deepFilter, deepFilter der die Filterstruktur auf Satelliten-Ebene beschreibt
-     * @post Instanz von CompleteFilter erstellt
+     * @param deepFilter, deepFilter der die weitere Filterstruktur beschreibt
+     * @post Instanz von FilterChannel erstellt
      */
     public FilterChannel(FilterForChannel filter, List<FilterChannel> deepFilter) {
         this.filter = filter;
         this.deepFilter = deepFilter;
+    }
+    /**
+     * Konstruktor für Klasse FilterChannel
+     * @param filter, filter der einen konkreten Filter für diese Ebene definiert
+     * @param deepFilter, deepFilter der nur aus einem Filter besteht --> einfaches Und
+     * @post Instanz von FilterChannel erstellt
+     */
+    public FilterChannel(FilterForChannel filter, FilterChannel deepFilter) {
+        this.filter = filter;
+        this.deepFilter = new ArrayList<FilterChannel>();
+        this.deepFilter.add(deepFilter);
     }
     /**
      * Set-Funktion zum überschreiben der deepfilter-Struktur
@@ -33,9 +46,10 @@ public class FilterChannel{
         this.deepFilter = deepFilter;
     }
     /**
-     * Funktion zum rekursiven Bauen des Filters
-     * @param channel, channel
-     * @post Instanz von CompleteFilter erstellt
+     * Funktion zum Durchführen des filter Filters auf dem aktuellen Channel
+     * @param channel, channel der gefiltert werden soll
+     * @return Boolean, ob der Channel der angeforderten Filterstruktur entspricht
+     * @post Eindeutige Entscheidung ob der Channel Teil der gefilterten Struktur sein soll oder nicht
      */
     public Boolean filter_data(Channel channel){
         // use filter on data (AND operation)
@@ -44,8 +58,13 @@ public class FilterChannel{
         }
         return this.filter.filter(channel) && this.getDeepFilterBoolean(channel);
     };
-
-    public Boolean getDeepFilterBoolean(Channel channel){
+    /**
+     * Funktion zum rekursiven Durchreichen des zu filternden Channels an die Filter in der deepfilter Liste
+     * @param channel, channel der gefiltert werden soll
+     * @return Boolean, ob der Channel der angeforderten Filterstruktur entspricht
+     * @post Eindeutige Entscheidung ob der Channel Teil der gefilterten Struktur sein soll oder nicht
+     */
+    private Boolean getDeepFilterBoolean(Channel channel){
         if (this.deepFilter == null){
             return true;
         }
