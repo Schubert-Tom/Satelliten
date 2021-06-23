@@ -18,7 +18,7 @@
 3.3. Wählen Sie eine Klasse Ihrer Wahl aus<br />
 4. Wählen Sie eine output-Variante aus<br />
 4.1. Gehen Sie dazu in den SWE Projektordner <br />
-4.2. Gehen Sie dann in den `OutputAggregat` Ordner
+4.2. Gehen Sie dann in den `OutputAggregat` Ordner<br />
 4.3. Wäheln Sie eine Klasse ihrer Wahl aus<br />
   (Wichtig: Bei der Ausgabe in der GUI sind zu große Datenmengen nicht anzeigbar da der Buffer von Java dafür zu klein ist. Wählen Sie dann JSON-Ausgabe [Bei Absturz muss der Prozess von vorne durchlaufen werden])<br />
 5. Drücken Sie den Button Filter<br />
