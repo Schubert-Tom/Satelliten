@@ -17,4 +17,7 @@
   4.3 Wählen Sie SWE
   4.4 Wählen Sie FilterViewAggregat
   4.5 Wäheln Sie eine Klasse ihrer Wahl aus
+  (Wichtig: Bei der Ausgabe in der Gui sind zu große Daten nicht anzeigbar!!!!! Wählen Sie JSON-Ausgabe)
+5. Drücken Sie den Button Filter
+6. Saven Sie den 
  
