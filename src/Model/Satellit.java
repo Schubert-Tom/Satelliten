@@ -5,11 +5,10 @@ import java.util.List;
 
 
 public class Satellit {
-    private String name;
-    private List<Transponder> transponders;
+    private String name = null;
+    private List<Transponder> transponders = null;
 
-    //Für view
-    private List<Channel>channels = null;
+
 
     public Satellit(List<Transponder> transponders, String name) {
         this.transponders = transponders;
@@ -23,10 +22,6 @@ public class Satellit {
         return transponders;
     }
 
-    public void setChannels(List<Channel> channels) {
-        this.channels = channels;
-    }
-
     public String getName() {
         return name;
     }
@@ -35,5 +30,8 @@ public class Satellit {
         this.transponders = transponders;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

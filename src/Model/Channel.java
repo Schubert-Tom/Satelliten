@@ -16,13 +16,10 @@ public class Channel {
     private String pack;
     private String res;
 
-    //Für view
-    private Transponder transponder = null;
-    private Satellit satellit = null;
-    private String sat = null;
 
-    public Satellit getSatellit(){return satellit};
-    public Transponder getTransponder(){return transponder};
+    public Channel() {
+    }
+
     public Channel (String sid){
         this.sid= sid;
     }
@@ -66,15 +63,45 @@ public class Channel {
         this.res = res;
     }
 
-    public void setTransponder(Transponder transponder) {
-        this.transponder = transponder;
+
+    public String getSid() {
+        return sid;
     }
 
-    public void setSatelit(Satellit satellit) {
-        this.satellit = satellit;
+    public String getType() {
+        return type;
     }
-    public void setSat(String sat) {
-        this.sat = sat;
+
+    public String getA_pid() {
+        return a_pid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getV_pid() {
+        return v_pid;
+    }
+
+    public String getCompression() {
+        return compression;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getEnc() {
+        return enc;
+    }
+
+    public String getPack() {
+        return pack;
+    }
+
+    public String getRes() {
+        return res;
     }
 
 }
