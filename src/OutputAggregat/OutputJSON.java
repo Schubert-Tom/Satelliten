@@ -15,16 +15,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.function.BiConsumer;
-
+/**
+ * Klasse um String in JSON file zu speichern
+ *@author 4328112, 1319658, 1060449
+ *@version 1.1
+ */
 public class OutputJSON implements BiConsumer<String, JFrame>{
-
+    /**
+     * Funktion Überprüfung
+     */
     @Override
     public void accept(String content, JFrame jf) {
         String path = choosePath(jf);
         if(path != null)
             write(path, content);
     }
-
+    /**
+     * Funktion choose path
+     */
     private String choosePath(JFrame jf) {
         JFileChooser c = new JFileChooser();
         c.setAcceptAllFileFilterUsed(false);
@@ -50,7 +58,9 @@ public class OutputJSON implements BiConsumer<String, JFrame>{
         }
         return null;
     }
-
+    /**
+     * Funktion zum Schreiben des Files
+     */
     private void write(String filePath, String content)
     {
         Path path = Paths.get(filePath);

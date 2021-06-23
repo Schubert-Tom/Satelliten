@@ -2,7 +2,6 @@ package ExternalWorkload;
 
 import Controller.Aggregat;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -13,14 +12,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Supplier;
 
-public class GetAggregat{
-    public static Aggregat get(String location, String nameOfClass) {
-        //nameOfClass = nameOfClass.split(".class")[0];
-        Aggregat ag;
+/**
+ * Klasse um Aggregate aus externen Directories zu laden
+ *@author 4328112, 1319658, 1060449
+ *@version 3.4
+ */
 
+public class GetAggregat{
+    /**
+     * Lädt aggregat an angegebener Location mit dem Namen nameOfClass
+     *
+     * @param location, Pfad der Aggregat Klasse
+     * @param nameOfClass, Name der Klasse
+     * @return Geladenes Aggregat
+     */
+    public static Aggregat get(String location, String nameOfClass) {
+        Aggregat ag;
+        String[] pathElements = location.split(File.separator);
         String pathString = location + File.separator + nameOfClass;
-        nameOfClass = "te.MyClass";
-        Path path = Paths.get(pathString);//.toAbsolutePath();
+        nameOfClass = pathElements[pathElements.length-1] + "." + nameOfClass.split(".class")[0];
+        Path path = Paths.get(pathString);
         ByteClassLoader loader = new ByteClassLoader();
 
         try {

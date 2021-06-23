@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SWE:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SWE_jar</output-path>
+    <root id="archive" name="SWE.jar">
+      <element id="module-output" name="SWE" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jackson-databind-2.12.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jackson-core-2.12.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/SWE/json-20210307.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/annotations-20.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jackson-annotations-2.12.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/SWE/gson-2.8.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" path-in-jar="/" />
+      <element id="library" level="project" name="commons-beanutils-20030211.134440" />
+      <element id="library" level="project" name="gson-2.8.7" />
+      <element id="library" level="project" name="json-20210307" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/annotations-20.1.0.jar" />
+      <element id="library" level="project" name="jackson-annotations-2.12.31" />
+      <element id="library" level="project" name="jackson-core-2.12.3" />
+      <element id="library" level="project" name="jackson-databind-2.12.3" />
+    </root>
+  </artifact>
+</component>
