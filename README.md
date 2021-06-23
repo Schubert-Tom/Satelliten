@@ -12,9 +12,9 @@
 
 1. Starte die Applikation mit dem Ausführen der Main
 2. Wählen Sie in der GUI über den Button "Load Data" ein Satelliten-File aus, dass geladen werden soll.
-3. Wählen Sie ein Filteraggregat über den Explorer aus
-3.1. Gehen Sie dazu in den SWE Projektordner <br />
-3.2. Gehen Sie dann in den `FilterViewAggregat` Ordner <br />
+3. Wählen Sie ein Filteraggregat über den Explorer aus<br />
+3.1. Gehen Sie dazu in den SWE Projektordner<br />
+3.2. Gehen Sie dann in den `FilterViewAggregat` Ordner<br />
 3.3. Wählen Sie eine Klasse Ihrer Wahl aus<br />
 4. Wählen Sie eine output-Variante aus<br />
 4.1. Gehen Sie dazu in den SWE Projektordner <br />
@@ -23,7 +23,7 @@
   (Wichtig: Bei der Ausgabe in der GUI sind zu große Datenmengen nicht anzeigbar da der Buffer von Java dafür zu klein ist. Wählen Sie dann JSON-Ausgabe [Bei Absturz muss der Prozess von vorne durchlaufen werden])<br />
 5. Drücken Sie den Button Filter<br />
 6. Drücken Sie den Button Save/Show<br />
-    7.1 Beim Speichern im JSON-Format öffnet sich der File-Explorer wählen Sie den Speicherort und den Namen aus
+    7.1 Beim Speichern im JSON-Format öffnet sich der File-Explorer wählen Sie den Speicherort und den Namen aus<br />
     7.2 Bei der Ausgabe auf dem Display erscheint ein Pop-Up-Window
 
 Ihr Ergebnis sollte jetzt je nach Output Methode als Datei vorliegen sein oder angezeigt werden
