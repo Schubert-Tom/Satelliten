@@ -23,8 +23,10 @@
   (Wichtig: Bei der Ausgabe in der GUI sind zu große Datenmengen nicht anzeigbar da der Buffer von Java dafür zu klein ist. Wählen Sie dann JSON-Ausgabe [Bei Absturz muss der Prozess von vorne durchlaufen werden])<br />
 5. Drücken Sie den Button Filter<br />
 6. Drücken Sie den Button Save/Show<br />
-    7.1 Beim Speichern im JSON-Format öffnet sich der File-Explorer wählen Sie den Speicherort und den Namen aus<br />
-    7.2 Bei der Ausgabe auf dem Display erscheint ein Pop-Up-Window
+    6.1 Beim Speichern im JSON-Format öffnet sich der File-Explorer wählen Sie den Speicherort und den Namen aus<br />
+    6.2 Bei der Ausgabe auf dem Display erscheint ein Pop-Up-Window
+7. Wenn Sie den Prozess durchlaufen haben ist der Filter auf der Datenstruktur angewendet worden
+   Um einen weiteren Filter darauf auszuführen müssen Sie die Datei neu laden !!!
 
 Ihr Ergebnis sollte jetzt je nach Output Methode als Datei vorliegen sein oder angezeigt werden
 
