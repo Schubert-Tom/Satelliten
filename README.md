@@ -36,10 +36,15 @@ Ihr Ergebnis sollte jetzt je anch Output Methode vorhanden sein / angezeigt werd
  Es liegen zwei mögliche Output-Aggregate vor
   1. Ausgabe in der GUI
   2. Ausgabe in ein JSON-File
-Es können 
+Bei der Ausgabe in der GUI keine großen Filterergebnisse benutzen --> Nutzen Sie das Filter/View-Aggregat `SatellitTransponderAggregat.class`
 
 ## Filter/View-Aggregat
+Es liegen zwei Filter vor. Es können jedoch variabel neue Filter erstellt werden:
 
+1. Ein Filter der nach TV und HD Sendern filtert und dann die Ergebnisse in der View-Form: Satellit->Channel ausgibt
+2. Ein Filter der nach dem Satellit "Eutelsat 3B" filtert,
+    danach nach dem Transponder mit der Frequenz 4034HZ
+    und das in der View-Form Satellit->Transponder->Channel ausgibt
 
 
 ## Zusätzliche Informationen
