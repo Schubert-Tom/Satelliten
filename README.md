@@ -4,7 +4,7 @@
 1. Clonen Sie das Repository oder laden Sie es als Zip-Datei herunter
 2. Gehen Sie in den Ordner SWE
 3. Öffnen Sie ein Terminal im Ordner SWE
-4. Geben Sie folgendes in die Console ein: 'java -jar SWE.jar'
+4. Geben Sie folgendes in die Console ein: `java -jar SWE.jar`
 5. Schauen Sie bei Workflow um die Verwendung und Nutzung der Applikation nachzuvollziehen 
 
 
