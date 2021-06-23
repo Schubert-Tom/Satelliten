@@ -28,7 +28,7 @@
 7. Wenn Sie den Prozess durchlaufen haben ist die Datenstruktur modifiziert.
    Um einen weiteren Filter darauf auszuführen müssen Sie die Datei über den Button "Load Data" neu laden
 
-Ihr Ergebnis sollte jetzt je nach Output Methode als Datei vorliegen sein oder angezeigt werden
+Ihr Ergebnis sollte jetzt je nach Output Methode als Datei vorliegen oder in der GUI angezeigt werden
 
 ## Output-Aggregat
  Es liegen zwei mögliche Output-Aggregate vor
