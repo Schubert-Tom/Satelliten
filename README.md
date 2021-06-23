@@ -22,4 +22,4 @@
 6. Drücken Sie den Button Save/Show<br />
 
 Ihr Ergebnis sollte jetzt je anch Output Methode vorhanden sein / angezeigt werden
- 
+SWE.jar ist das Compilat
