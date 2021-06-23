@@ -14,7 +14,7 @@ public class Writer {
     private String filePath;
 
     public Writer(String path, String name){
-        this.filePath = path + File.pathSeparator + name;
+        this.filePath = path + File.separator + name;
     }
 
     public void write(String content)

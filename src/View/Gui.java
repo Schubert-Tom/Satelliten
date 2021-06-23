@@ -10,24 +10,25 @@ import Model.*;
 import FileActions.Reader;
 
 import Model.Filter.Satellit.FilterForSatellitName;
-import OutputAggregat.ShowInGui;
-import OutputAggregat.SaveToFile;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import java.util.List;
+
 /**
  *
  * @author Thomas Khiem
  */
 public class Gui extends javax.swing.JFrame {
 
-    private List<Satellit> satellitList;
+    //private List<Satellit> satellitList;
+    private Data rawData  = new Data();
+    private Data data = new Data();
     private Aggregat aggregat;
-
+    private String fileNameAggregat;
+    private String pathAggregat;
+    private String filenameOutputType;
+    private String pathOutputType;
     /**
      * Creates new form ContactEditorUI
      */
@@ -44,14 +45,17 @@ public class Gui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        scrollPlane = new JScrollPane();
-        outputArea = new JTextArea();
-        loadData = new JButton();
-        loadAggregat = new JButton();
-        outputType = new JCheckBox();
-        run = new JButton();
+        scrollPlane = new javax.swing.JScrollPane();
+        outputArea = new javax.swing.JTextArea();
+        loadData = new javax.swing.JButton();
+        chooseAggregat = new javax.swing.JButton();
+        run = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        chooseOutput = new javax.swing.JButton();
+        filename = new javax.swing.JTextField();
+        filenameAggregat = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         outputArea.setEditable(false);
         outputArea.setColumns(20);
@@ -59,64 +63,86 @@ public class Gui extends javax.swing.JFrame {
         scrollPlane.setViewportView(outputArea);
 
         loadData.setText("Load Data");
-        loadData.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        loadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadDataActionPerformed(evt);
             }
         });
 
-        loadAggregat.setText("Load Aggregat");
-        loadAggregat.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                loadAggregatActionPerformed(evt);
+        chooseAggregat.setText("Choose Aggregat");
+        chooseAggregat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseAggregatActionPerformed(evt);
             }
         });
 
-        outputType.setText("Output JSON file output.json instead of screen. Attention overwrite");
-
-        run.setText("Run");
-        run.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        run.setText("Filter");
+        run.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 runActionPerformed(evt);
             }
         });
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        save.setText("Save/Show");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
+        chooseOutput.setText("Choose Output");
+        chooseOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseOutputActionPerformed(evt);
+            }
+        });
+
+        filename.setText("Output Filename");
+
+        filenameAggregat.setText("Aggregat Filename");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
-                                                .addComponent(outputType)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(run)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(22, 22, 22)
+                                .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(loadData)
-                                                .addGap(32, 32, 32)
-                                                .addComponent(loadAggregat)
-                                                .addGap(117, 117, 117))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(scrollPlane, GroupLayout.PREFERRED_SIZE, 647, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(chooseAggregat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(filenameAggregat)
+                                                        .addComponent(chooseOutput))
+                                                .addComponent(run)
+                                                .addComponent(filename, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(save))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(scrollPlane, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(loadData)
-                                        .addComponent(loadAggregat)
-                                        .addComponent(run)
-                                        .addComponent(outputType))
-                                .addGap(32, 32, 32))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(loadData)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(chooseAggregat)
+                                                .addGap(4, 4, 4)
+                                                .addComponent(filenameAggregat, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(11, 11, 11)
+                                                .addComponent(run)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(chooseOutput)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(save))
+                                        .addComponent(scrollPlane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(30, Short.MAX_VALUE))
         );
-
-        outputType.getAccessibleContext().setAccessibleName("Output json file instead of screen");
 
         pack();
     }// </editor-fold>
@@ -146,9 +172,10 @@ public class Gui extends javax.swing.JFrame {
                 outputArea.setText(c.getSelectedFile().getName());
                // dir.setText(c.getCurrentDirectory().toString());
                 Reader reader = new Reader(c.getCurrentDirectory().toString(),c.getSelectedFile().getName());
-               JsonConverter jsonConverter = new JsonConverter();
+                JsonConverter jsonConverter = new JsonConverter();
                 Transformer transformer = new Transformer( jsonConverter.convert(reader.readFile()));
-                satellitList =  transformer.transform();
+                this.rawData.setData(transformer.transform());
+
             }
             if (rVal == JFileChooser.CANCEL_OPTION) {
                 outputArea.setText("You pressed cancel");
@@ -158,36 +185,107 @@ public class Gui extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LoadDataActionPerformed
 
-    private void loadAggregatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAggregatActionPerformed
-        aggregat = new Aggregat(new CompleteFilter(new FilterSatellit(new FilterForSatellitName("TEST")),new FilterTransponder(null),new FilterChannel(null)), ViewCode.STC, CountCode.no);
+    private void chooseAggregatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAggregatActionPerformed
+
+        JFileChooser c = new JFileChooser();
+        c.setAcceptAllFileFilterUsed(false);
+        c.setFileFilter(new FileFilter() {
+
+            public String getDescription() {
+                return "Aggregat File";
+            }
+
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    String filename = f.getName().toLowerCase();
+                    return filename.endsWith(".java");
+                }
+            }
+        });
+        // Demonstrate "Open" dialog:
+        int rVal = c.showOpenDialog(Gui.this);
+        if (rVal == JFileChooser.APPROVE_OPTION) {
+            pathAggregat = c.getCurrentDirectory().toString();
+            fileNameAggregat = c.getSelectedFile().getName();
+            filenameAggregat.setText(fileNameAggregat);
+        }
+
+
+        this.aggregat = new Aggregat(new CompleteFilter(
+                new FilterSatellit(new FilterForSatellitName("BulgariaSat-1"),null),
+                null,
+                null),
+                ViewCode.STC, CountCode.no);
         
     }//GEN-LAST:event_loadAggregatActionPerformed
 
     private void runActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runActionPerformed
         // TODO add your handling code here:
         //filter nach Aggregat
-
+        this.data.setData(aggregat.filter(rawData).getData());
         //transform nach Aggregat
-        JavaToJson jts = new JavaToJson(satellitList);
+
+
+    }//GEN-LAST:event_runActionPerformed
+    private void chooseOutputActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        JFileChooser c = new JFileChooser();
+        c.setAcceptAllFileFilterUsed(false);
+        c.setFileFilter(new FileFilter() {
+
+            public String getDescription() {
+                return "OutputType File";
+            }
+
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    String filename = f.getName().toLowerCase();
+                    return filename.endsWith(".java");
+                }
+            }
+        });
+        // Demonstrate "Open" dialog:
+        int rVal = c.showOpenDialog(Gui.this);
+        if (rVal == JFileChooser.APPROVE_OPTION) {
+            pathOutputType = c.getCurrentDirectory().toString();
+            filenameOutputType = c.getSelectedFile().getName();
+            filename.setText(filenameOutputType);
+        }
+    }
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        JavaToJson jts = new JavaToJson(data.getData());
         String jsonString = jts.transform(aggregat.getView(), aggregat.getCount());
+        /*
         if(outputType.isSelected()){
-        //saveReport();
+            //saveReport();
+
             SaveToFile stf = new SaveToFile();
             stf.useAggregat(outputArea, jsonString);
         } else{
-        //outputArea.setText("Output string");
+            //outputArea.setText("Output string");
             ShowInGui sig = new ShowInGui();
             sig.useAggregat(outputArea, jsonString);
         }
 
-    }//GEN-LAST:event_runActionPerformed
+         */
+    }
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chooseAggregat;
+    private javax.swing.JButton chooseOutput;
+    private javax.swing.JTextField filename;
+    private javax.swing.JTextField filenameAggregat;
     private javax.swing.JButton loadData;
-    private javax.swing.JButton loadAggregat;
     private javax.swing.JTextArea outputArea;
-    private javax.swing.JCheckBox outputType;
     private javax.swing.JButton run;
+    private javax.swing.JButton save;
     private javax.swing.JScrollPane scrollPlane;
     // End of variables declaration//GEN-END:variables
 }

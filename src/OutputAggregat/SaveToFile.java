@@ -1,6 +1,5 @@
 package OutputAggregat;
 
-import FileActions.ErrorHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

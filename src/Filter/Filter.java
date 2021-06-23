@@ -29,21 +29,20 @@ public class Filter {
         this.filter = filter;
         this.subFilter = null;
     }
-
+    /*
     public List<Satellit> filter(List<Satellit> data)
     {
         buildFilter("Satellit");
         return filterElements(data, elementFilters(0), elementFilters(1), elementFilters(2));
     }
+    */
 
     //private <T> T buildFilter(Predicate<T> type)
+    //public <T extends Channel> Predicate<T> buildFilter(Class<T> type)
     public <T extends Channel> Predicate<T> buildFilter(Class<T> type)
     {
-        Predicate<T> orFilters = subFilter.stream().map(fil -> fil.buildFilter()).reduce(Predicate::and);
-
-        this.filter.and(orFilters);
-
-        return flatFilter;
+        Predicate<T> orFilters = (Predicate<T>) subFilter.stream().filter(el -> el.type.equals(type)).map(fil -> fil.buildFilter(fil.type)).reduce(x -> true, Predicate::or);
+        return (Predicate<T>) orFilters.and((Predicate<? super T>) filter);
     }
 
     private List<Satellit> filterElements(List<Satellit> data, Predicate<Satellit> satFilter, Predicate<Transponder> trapoFilter, Predicate<Channel> chanFilter)

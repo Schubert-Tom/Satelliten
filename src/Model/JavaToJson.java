@@ -1,8 +1,8 @@
 package Model;
 
 import FileActions.Writer;
-import org.json.simple.JSONObject;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +15,8 @@ public class JavaToJson {
     }
 
     public String transform( ViewCode view, CountCode count){
-        //Creating a JSONObject object
-        JSONObject jsonObject = new JSONObject();
+
+
         switch (view) {
             case S -> { //S
                 removeTransponderFromSat();
@@ -99,11 +99,16 @@ public class JavaToJson {
         }
         return null;
     }
-    public String putJson(String key, List value){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(key, value);
+    public String putJson(String key, List<?> value){
+
+        String json = null;
+        try {
+            json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         //Writer writer = new Writer("","output.txt");
-        return jsonObject.toJSONString();
+        return json;
     }
     public String getAllSat(){
         return putJson("sat",satellits);
