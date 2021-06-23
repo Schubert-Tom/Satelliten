@@ -32,6 +32,16 @@
 
 Ihr Ergebnis sollte jetzt je anch Output Methode vorhanden sein / angezeigt werden
 
+## Output-Aggregat
+ Es liegen zwei mögliche Output-Aggregate vor
+  1. Ausgabe in der GUI
+  2. Ausgabe in ein JSON-File
+Es können 
+
+## Filter/View-Aggregat
+
+
+
 ## Zusätzliche Informationen
 
 Teilnehmer: 4328112, 1319658, 1060449
