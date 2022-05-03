@@ -1,6 +1,6 @@
 # Satelliten Tool
 
-Objektorientierter Ansatz zum Einlesen und Filtern einer dreistudigen Liste von Satelliten.
+Objektorientierter Ansatz zum Einlesen und Filtern von Satelliten Daten.
 Es können variable Filterklassen erstellt und variable Ausgabeformate definiert werden.
 
 ## How to start
@@ -53,7 +53,9 @@ Es können variabel neue Aggregate erstellt werden, diese müssen einen Supplier
 
 ## Zusätzliche Informationen
 
-Die Information welcher Sprache die Sender sind kann dem JSON nicht entnommen werden.
+Sprachinformationen des Senders kann dem JSON nicht entnommen werden.
+
+Zusätzliche Informationen können der angefügten Dokumentation entnommen werden.
 
 Teilnehmer: 4328112, 1319658, 1060449
 
