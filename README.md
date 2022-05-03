@@ -1,4 +1,7 @@
-# SWE
+# Satelliten Tool
+
+Objektorientierter Ansatz zum Einlesen und Filtern einer dreistudigen Liste von Satelliten.
+Es können variable Filterklassen erstellt und variable Ausgabeformate definiert werden.
 
 ## How to start
 1. Clonen Sie das Repository oder laden Sie es als Zip-Datei herunter
